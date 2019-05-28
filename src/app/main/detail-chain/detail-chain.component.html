@@ -41,7 +41,7 @@
 
                 <div style="text-align: -webkit-center;" *ngIf="!(item.straightLine || item.straightLineArrow || item.upCurve || item.downCurve)">
                     <div class="circle row"></div>
-                    <div class="row">{{item.from}} - {{item.to}}</div>
+                    <div class="row nameGraph">{{item.from}} - {{item.to}}</div>
                 </div>
                 <div *ngIf="item.straightLine">
                     <div class="straightLine" [ngStyle]="{'background':item.color}"></div>
