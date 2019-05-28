@@ -7,7 +7,7 @@ import { CommonService } from '../common.service';
   encapsulation: ViewEncapsulation.None,
 })
 export class MainComponent implements OnInit {
-  constructor(private common: CommonService) { }
+  constructor(public common: CommonService) { }
   ngOnInit() {
     
   }
