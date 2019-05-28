@@ -1,0 +1,79 @@
+<div class="mainPanel">
+    <div class="row detailBox">
+        <div class="ui-md-1 cardEffect" *ngFor="let item of detailsJson;let i=index">
+            <div class="row">
+                <div class="ui-md-1 countCircle">
+                    <p class="numberCount">{{i+1}}</p>
+                </div>
+                <div class="ui-md-3 fromField">
+                    {{item.from}}
+                </div>
+                <div class="ui-md-1">
+                    <i class="pi pi-minus" style="    display: flex;
+                    top: 2px;"></i>
+                </div>
+                <div class="ui-md-3 toField">
+                    {{item.to}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="dateDisplay">
+                    Departure:{{item.departure |date}}<br> Return:{{item.return |date}}
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <div class="row rowDisplay">
+        <div *ngFor="let item of planTripData">
+            <div class="levelTwo" style="margin-top: -90px" *ngIf="item.level==2">
+                <div class="curveUp" *ngIf="item.upCurve">
+                    <div class="row">
+                        <div class="ui-md-6 boxSize firstBlockUp" [ngStyle]="{'color':item.color}"></div>
+                        <div class="ui-md-6 boxSize secondBlockUp" [ngStyle]="{'color':item.color}"></div>
+                    </div>
+                    <div class="row" style="margin-left: 5px;">
+                        <div class="ui-md-6 boxSize thirdBlockUp" [ngStyle]="{'color':item.color}"></div>
+                        <div class="ui-md-6 boxSize fourthBlockUp" [ngStyle]="{'color':item.color}"></div>
+                    </div>
+                </div>
+
+                <div style="text-align: -webkit-center;" *ngIf="!(item.straightLine || item.straightLineArrow || item.upCurve || item.downCurve)">
+                    <div class="circle row"></div>
+                    <div class="row">{{item.from}} - {{item.to}}</div>
+                </div>
+                <div *ngIf="item.straightLine">
+                    <div class="straightLine" [ngStyle]="{'background':item.color}"></div>
+                </div>
+                <div *ngIf="item.straightLineArrow" class="straightLineArrow">
+                    <div class="straightLine" [ngStyle]="{'background':item.color}"></div>
+                    <div class="arrow-right"></div>
+                </div>
+            </div>
+            <div class="levelOne" *ngIf="item.level==1">
+                <div style="text-align: -webkit-center;" *ngIf="!(item.straightLine || item.straightLineArrow || item.upCurve || item.downCurve)">
+                    <div class="circle row"></div>
+                    <div class="row nameGraph">{{item.from}} - {{item.to}}</div>
+                </div>
+                <div *ngIf="item.straightLine">
+                    <div class="straightLine" [ngStyle]="{'background':item.color}"></div>
+                </div>
+                <div *ngIf="item.straightLineArrow" class="straightLineArrow">
+                    <div class="straightLine" [ngStyle]="{'background':item.color}"></div>
+                    <div class="arrow-right"></div>
+                </div>
+                <div class="curveDown" *ngIf="item.downCurve" style="margin-top: -90px">
+                    <div class="row">
+                        <div class="ui-md-6 boxSize firstBlockDown" [ngStyle]="{'color':item.color}"></div>
+                        <div class="ui-md-6 boxSize secondBlockDown" [ngStyle]="{'color':item.color}"></div>
+                    </div>
+                    <div class="row" style="margin-left: -5px;">
+                        <div class="ui-md-6 boxSize thirdBlockDown" [ngStyle]="{'color':item.color}"></div>
+                        <div class="ui-md-6 boxSize fourthBlockDown" [ngStyle]="{'color':item.color}"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

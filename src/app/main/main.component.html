@@ -1,0 +1,66 @@
+<div class="lds-spinner" *ngIf="common.loader">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+</div>
+<div *ngIf="!common.loader">
+    <div class="row searchPanel">
+        <div class="ui-md-3 subPanel">
+            <div class="headers">FROM</div>
+            <p-dropdown [showClear]="true" [resetFilterOnHide]="true" placeholder="SELECT A CITY" dropdownIcon="none" [virtualScroll]="true" itemSize="30" [options]="common.allJSONData" [(ngModel)]="common.commonSelectedFrom" filter="true" filterBy="label,value">
+                <ng-template let-item pTemplate="item">
+                    <div class="row" style="margin: 0">
+                        <div class="ui-md-10">{{item.label}}</div>
+                        <div class="ui-md-2">{{item.value}}</div>
+                    </div>
+                    <div>{{item.name}}</div>
+                </ng-template>
+            </p-dropdown>
+        </div>
+        <div class="ui-md-1" style="position:absolute;left:20.55%;">
+            <div class="circleSwitch" (click)="common.switchDestination()">
+                <i class="pi pi-arrow-left" style="font-size: 2em"></i>
+                <i class="pi pi-arrow-right" style="font-size: 2em"></i>
+            </div>
+        </div>
+        <div class="ui-md-3 subPanel">
+            <div class="headers">TO</div>
+            <p-dropdown [resetFilterOnHide]="true" [showClear]="true" placeholder="SELECT A CITY" dropdownIcon="none" [virtualScroll]="true" itemSize="30" [options]="common.allJSONData" [(ngModel)]="common.commonSelectedTo" filter="true" filterBy="label,value">
+                <ng-template let-item pTemplate="item">
+                    <div class="row" style="margin: 0">
+                        <div class="ui-md-10">{{item.label}}</div>
+                        <div class="ui-md-2">{{item.value}}</div>
+                    </div>
+                    <div>{{item.name}}</div>
+                </ng-template>
+            </p-dropdown>
+        </div>
+        <div class="ui-md-2 subPanel">
+            <div class="headers">DEPARTURE</div>
+            <p-calendar [(ngModel)]="common.commonSelectedDepartureDate" [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030"></p-calendar>
+        </div>
+        <div class="ui-md-2 subPanel">
+            <div class="headers">RETURN</div>
+            <p-calendar [(ngModel)]="common.commonSelectedReturnDate" [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030"></p-calendar>
+        </div>
+        <div class="ui-md-1">
+            <button (click)="common.planTrip()" class="btn btn-success planButton" [disabled]="!(common.commonSelectedFrom && common.commonSelectedTo) || (common.commonSelectedFrom==common.commonSelectedTo)">PLAN</button>
+        </div>
+        <div class="row">
+            <p *ngIf="(common.commonSelectedFrom==common.commonSelectedTo)" style="color: red;font-weight: 700">*FROM and TO cannot be same.</p>
+        </div>
+    </div>
+
+    <div class="row" style="margin: 0">
+        <app-detail-chain [planData]="common.planTripData" [detailsJSON]="common.detailsJson"></app-detail-chain>
+    </div>
+</div>
